@@ -1,0 +1,41 @@
+<apex:page controller="multiselect">
+    <apex:form >
+        <apex:outputPanel id="sel">
+            <apex:pageMessages ></apex:pageMessages>
+        <apex:panelGrid columns="3" id="parent">
+            <apex:selectList id="sel1" value="{!leftselected}" multiselect="true" style="width:100px" size="5">
+                <apex:selectOptions value="{!unselectedvalues}" />
+            </apex:selectList>
+                <apex:panelGroup >
+                    <br/>
+                    <apex:commandButton value=">"  action="{!selectclick}" reRender="parent,child">
+                    </apex:commandButton>
+                    <br/><br/>
+                    <apex:commandButton value="<"  action="{!unselectclick}" reRender="parent,child">
+                    </apex:commandButton>
+                </apex:panelGroup>
+            <apex:selectList id="sel2" value="{!rightselected}" multiselect="true" style="width:100px" size="5">
+                <apex:selectOptions value="{!SelectedValues}" />
+            </apex:selectList>
+        </apex:panelGrid>
+         <apex:panelGrid columns="3" id="child">
+            <apex:selectList id="sel3" value="{!leftChildselected}" multiselect="true" style="width:100px" size="5">
+                <apex:selectOptions value="{!unselectedChildvalues}" />
+            </apex:selectList>
+                <apex:panelGroup >
+                    <br/>
+                    <apex:commandButton value=">"  action="{!selectChildclick}" reRender="child">
+                    </apex:commandButton>
+                    <br/><br/>
+                    <apex:commandButton value="<"  action="{!unselectChildclick}" reRender="child">
+                    </apex:commandButton>
+                </apex:panelGroup>
+              
+            <apex:selectList id="sel4" value="{!rightChildselected}" multiselect="true" style="width:100px" size="5">
+                <apex:selectOptions value="{!SelectedChildValues}" />
+            </apex:selectList>
+        </apex:panelGrid>
+        </apex:outputPanel>
+        <apex:commandButton value="Save" action="{!saveMethod}" reRender="sel" />
+    </apex:form>
+</apex:page>
